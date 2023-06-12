@@ -1,0 +1,184 @@
+/* mobile CSS */
+
+@media only screen and (max-width: 767px) {
+  .form {
+    background-color: rgb(209, 212, 215);
+  }
+  .form_right_side {
+    text-align: center;
+    background-color: rgb(204, 239, 248); /*rgb(190, 230, 241);*/
+    width: 100%;
+    padding: 42px 90px 12px 90px;
+    height: 60vh;
+    box-sizing: border-box;
+  }
+  .form_left_side {
+    /* text-align: center; */
+    background-color: rgb(125, 217, 202);
+    width: 100%;
+    /* padding: 10px 20px 50px 20px; !important */
+    height: 60vh;
+    box-sizing: border-box;
+  }
+  .bg-image {
+    background-image: url("https://www.maxpixel.net/static/photo/2x/Geometric-Background-Square-Forms-Background-Screen-2442009.jpg");
+    height: 60vh;
+  }
+  .form-control {
+    background-color: whitesmoke;
+  }
+  .form_group {
+    margin-top: 6px;
+  }
+  .btn {
+    border-color: rgb(246, 247, 248);
+    background-color: rgb(125, 217, 202);
+    margin: 12px auto;
+    padding: 6px 18px 6px 18px;
+    border-radius: 18px;
+  }
+  .create_account {
+    color: rgb(125, 217, 202);
+  }
+  .welcome_text {
+    color: white;
+  }
+}
+
+/* Tab CSS */
+@media (min-width: 768px) and (max-width: 991px) {
+  .form {
+    background-color: rgb(209, 212, 215);
+  }
+  .form_right_side {
+    text-align: center;
+    background-color: rgb(204, 239, 248); /*rgb(190, 230, 241);*/
+    width: 100%;
+    padding: 70px 150px 20px 150px;
+    height: 100vh;
+    box-sizing: border-box;
+  }
+  .form_left_side {
+    /* text-align: center; */
+    background-color: rgb(125, 217, 202);
+    width: 100%;
+    /* padding: 10px 20px 50px 20px; !important */
+    height: 100vh;
+    box-sizing: border-box;
+  }
+  .bg-image {
+    background-image: url("https://www.maxpixel.net/static/photo/2x/Geometric-Background-Square-Forms-Background-Screen-2442009.jpg");
+    height: 100vh;
+  }
+  .form-control {
+    background-color: whitesmoke;
+  }
+  .form_group {
+    margin-top: 10px;
+  }
+  .btn {
+    border-color: rgb(246, 247, 248);
+    background-color: rgb(125, 217, 202);
+    margin: 20px auto;
+    padding: 10px 30px 10px 30px;
+    border-radius: 30px;
+  }
+  .create_account {
+    color: rgb(125, 217, 202);
+  }
+  .welcome_text {
+    color: white;
+  }
+}
+
+/* Small Screen Desktop */
+@media (min-width: 992px) and (max-width: 1024px) {
+  .form {
+    background-color: rgb(209, 212, 215);
+  }
+  .form_right_side {
+    text-align: center;
+    background-color: rgb(204, 239, 248); /*rgb(190, 230, 241);*/
+    width: 100%;
+    padding: 70px 150px 20px 150px;
+    height: 100vh;
+    box-sizing: border-box;
+  }
+  .form_left_side {
+    /* text-align: center; */
+    background-color: rgb(125, 217, 202);
+    width: 100%;
+    /* padding: 10px 20px 50px 20px; !important */
+    height: 100vh;
+    box-sizing: border-box;
+  }
+  .bg-image {
+    background-image: url("https://www.maxpixel.net/static/photo/2x/Geometric-Background-Square-Forms-Background-Screen-2442009.jpg");
+    height: 100vh;
+  }
+  .form-control {
+    background-color: whitesmoke;
+  }
+  .form_group {
+    margin-top: 10px;
+  }
+  .btn {
+    border-color: rgb(246, 247, 248);
+    background-color: rgb(125, 217, 202);
+    margin: 20px auto;
+    padding: 10px 30px 10px 30px;
+    border-radius: 30px;
+  }
+  .create_account {
+    color: rgb(125, 217, 202);
+  }
+  .welcome_text {
+    color: white;
+  }
+}
+
+/* Screen Desktop */
+@media (max-width: 1280px) {
+  .form {
+    background-color: rgb(209, 212, 215);
+  }
+  .form_right_side {
+    text-align: center;
+    background-color: rgb(204, 239, 248); /*rgb(190, 230, 241);*/
+    width: 100%;
+    padding: 70px 150px 20px 150px;
+    height: 100vh;
+    box-sizing: border-box;
+  }
+  .form_left_side {
+    /* text-align: center; */
+    background-color: rgb(125, 217, 202);
+    width: 100%;
+    /* padding: 10px 20px 50px 20px; !important */
+    height: 100vh;
+    box-sizing: border-box;
+  }
+  .bg-image {
+    background-image: url("https://www.maxpixel.net/static/photo/2x/Geometric-Background-Square-Forms-Background-Screen-2442009.jpg");
+    height: 100vh;
+  }
+  .form-control {
+    background-color: whitesmoke;
+  }
+  .form_group {
+    margin-top: 10px;
+  }
+  .btn {
+    border-color: rgb(246, 247, 248);
+    background-color: rgb(125, 217, 202);
+    margin: 20px auto;
+    padding: 10px 30px 10px 30px;
+    border-radius: 30px;
+  }
+  .create_account {
+    color: rgb(125, 217, 202);
+  }
+  .welcome_text {
+    color: white;
+  }
+}

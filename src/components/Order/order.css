@@ -1,0 +1,129 @@
+.full_page {
+  margin-top: 15px;
+}
+.address_block {
+  background-color: rgb(209, 236, 236);
+  text-align: left;
+  margin: 5px 5px 5px 5px;
+  padding: 5px;
+  border: 2px solid black;
+}
+.add_address {
+  margin: 20px 10px 20px 10px;
+}
+.order_total_price {
+  background-color: rgb(238, 204, 112);
+  text-align: center;
+  margin: auto;
+  padding-top: 10px;
+  height: 40px;
+}
+.order_btn {
+  float: right;
+}
+.address_btn {
+  float: left;
+}
+.cancel_btn {
+  float: unset;
+}
+.city_pincode {
+  display: flex;
+}
+.product_info {
+  display: table;
+  margin: 10px 0px 10px 0px;
+  /* background-color: brown; */
+}
+.combine_prod_data {
+  background-color: rgb(199, 130, 130);
+  display: flex;
+  box-shadow: 0px 5px 5px 0px;
+  width: 95%;
+  height: 40vh;
+}
+
+.product_data {
+  /* background-color: rgb(102, 124, 124); */
+  text-align: center;
+  margin: 10px 0px auto 0px;
+}
+.total_price {
+  /* background-color: rgb(199, 199, 252); */
+  text-align: center;
+  margin: 5px auto auto 0px;
+  display: table;
+  float: left;
+}
+.prod_image {
+  margin: 10px 55px 5px 5px;
+  /* background-color: aquamarine; */
+}
+.order_product_image {
+  height: 200px;
+  width: 200px;
+  margin: auto;
+  border: 2px solid rgb(83, 80, 80);
+}
+.inc_dec_qty {
+  display: flex;
+  margin: 5px auto auto 0px;
+}
+.full_order_body {
+  background-color: rgb(249, 238, 238);
+  margin: 5px 0px 15px 0px;
+  padding-top: 10px;
+  border: 2px solid rgb(33, 31, 31);
+}
+.full_order_body_product_search {
+  background-color: rgb(243, 128, 128);
+  margin: 5px 0px 15px 0px;
+  padding-top: 10px;
+  border: 2px solid rgb(33, 31, 31);
+}
+
+.order_product_info {
+  margin-bottom: auto;
+  text-align: left;
+}
+.order_address_info {
+  text-align: left;
+}
+.order_product_totalprice {
+  text-align: left;
+}
+.order_data_status_active {
+  color: rgb(87, 238, 87);
+}
+.order_data_status_cancel {
+  color: rgb(243, 27, 27);
+}
+.update_order_info {
+  /* background-color: rgb(221, 221, 173); */
+  display: flex;
+  margin: 15px 0px auto 0px;
+}
+.order_update_form {
+  background-color: rgb(232, 210, 180);
+  margin: 15px 10px auto 0px;
+  height: 100vh;
+}
+.updte_order_product_image {
+  height: 250px;
+  width: 250px;
+  margin: auto 10px auto 15px;
+  border: 2px solid rgb(83, 80, 80);
+}
+
+.update_order_product_info {
+  /* background-color: rgb(203, 137, 137); */
+  text-align: center;
+  margin: 15px 0px 0px 0px;
+}
+.full_body_div {
+  background-color: rgb(238, 219, 196);
+  height: 100vh;
+}
+.order_btns {
+  display: flex;
+}

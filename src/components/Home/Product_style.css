@@ -1,0 +1,84 @@
+.full_body {
+  background-color: rgb(247, 245, 242);
+  /* background-image: url("https://www.maxpixel.net/static/photo/2x/Geometric-Background-Square-Forms-Background-Screen-2442009.jpg"); */
+}
+.product_class {
+  background-color: rgb(203, 223, 240);
+  margin: 0px 0px 25px 0px;
+  cursor: pointer;
+}
+.price_box {
+  /* background-color: rgb(127, 197, 127); */
+  margin: 0px 15px 10px 15px;
+  padding: 5px;
+}
+.product_image {
+  /* margin: 0px 70px 0px 70px; */
+  margin: 10px auto 0px auto;
+  width: 18.6vw; /*15.6*/
+  height: 35.6vh;
+  border: 2px solid black;
+}
+.product_type {
+  background-color: rgb(155, 237, 237);
+  margin: 5px 15px 5px 15px;
+}
+.product_name {
+  background-color: rgb(244, 244, 165);
+  margin: 5px 15px 5px 15px;
+}
+.product_details {
+  /* background-color: rgb(216, 216, 166); */
+  margin: 5px 15px 5px 15px;
+}
+.type {
+  float: left;
+}
+.wish_in_btn {
+  background-color: rgb(215, 88, 88);
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  float: right;
+  margin: auto 5px auto 5px;
+}
+.wish_out_btn {
+  background-color: whitesmoke;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  float: right;
+  margin: auto 5px auto 5px;
+}
+.btn {
+  border-color: rgb(246, 247, 248);
+  background-color: rgb(125, 217, 202);
+  margin: 1.5vw auto;
+  padding: 0.7vw 2.3vw 0.7vw 2.3vw;
+  border-radius: 2.3vw;
+}
+
+.product_image_order {
+  background-color: rgba(0, 123, 255, 0.25);
+  margin: 30px 10px 10px 10px;
+  display: table;
+}
+
+.product_product_image {
+  height: 350px;
+  width: 300px;
+  margin: 10px 10px 10px 10px;
+  border: 2px solid rgb(113, 0, 128);
+  float: left;
+}
+
+.all_body {
+  display: flex;
+}
+
+.product_details {
+  /* background-color: whitesmoke; */
+  text-align: center;
+  margin: 20px 20px 10px 20px;
+  padding: 5px;
+}
