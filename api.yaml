@@ -1,0 +1,820 @@
+swagger: "2.0"
+info:
+  title: E_Commerce APIs
+  description: Created by Rishabh Saxena
+  version: 1.0
+  contact: 
+    email: rishabh.s@dollarbird.com
+  liscence: 
+    name: Apache 2.0
+    url: "https://apache.org/"
+  servers: 
+    -url: "http://localhost:5555/"
+    description: This is the developers server on localhost
+    -url: "http://localhost:5556/"
+    description: This is the unit test server on localhost
+
+schemes: [http]
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+    description: >-
+      Enter the token with the `Bearer: ` prefix, e.g. "Bearer abcde12345".
+
+paths: 
+#------------------------------create registration-------------
+  /registration:
+    post: 
+      summary: It creates a user
+      description: It is a registration API.
+      produces: 
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+      - in: body  
+        name: user
+        schema: 
+          type: object
+          properties: 
+            firstName:
+              type: string
+              required: true
+            lastName:
+              type: string
+              required: true
+            email:
+              type: string
+              required: true
+              pattern: '^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$'
+            phoneNumber: 
+              type: string
+              required: true
+              pattern: '^[6-9]{1}[0-9]{9}$'
+            password:
+              type: string
+              required: true
+              pattern: '^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$'
+      responses:
+          201:
+            description: created
+          400:
+            description: bad request
+          500:
+            description: internal server error
+
+#-----------------------signIn-------------------
+  /signIn:
+    post:
+      summary: SignIn a user
+      description: It is a singIn API.
+      produces: 
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+      - in: body
+        name: user
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+              required: true
+            password:
+              type: string
+              required: true
+      responses:
+        200:
+          description: ok
+        404:
+          description: not found
+        500:
+          description: internal server error
+        400:
+          description: bad request
+      
+#---------------------getUser-----------------
+  /getUser/{userId}:
+    get:
+      summary: To get the user information
+      description: To get the user information, pass the token which is generated on signIn.
+      security:
+      - Bearer: []
+      parameters:
+      - in: path
+        name: userId
+        required: true
+      responses:
+        200:
+          description: ok
+        400:
+          description: bad request
+        404:
+          description: not found
+        500:
+          description: internal server error
+        
+#--------------------------------updateUser------------------
+  /updateUser/{userId}:
+    put:
+      summary: To update the user.
+      description: To update the user using token and the data from the body, and the userId from the params
+      security: 
+      - Bearer: []
+      parameters:
+      - in: path
+        name: userId
+        required: true
+      requestBody:
+        content: 
+          application/json:
+            schema: 
+              type: object
+            properties: 
+              firstName:
+                type: string
+              lastName:
+                type: string
+              email:
+                type: string
+                pattern: '^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$'
+              phoneNumber: 
+                type: string
+                pattern: '^[6-9]{1}[0-9]{9}$'
+      responses:
+        200:
+          description: ok
+        400:
+          description: bad request
+        404:
+          description: not found
+        500:
+          description: internal server error
+   
+
+#---------------------------change Password---------------------
+  /changePassword/{userId}:
+    put:
+      summary: To change the password.
+      description: To change the password, pass the token.
+      security: 
+      - Bearer: []
+      parameters:
+      - in: path
+        name: userId
+        required: true
+      requestBody:
+        content: 
+          application/json:
+            schema: 
+              type: object
+            properties:
+              email:
+                type: string
+                required: true
+                pattern: '^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$'
+              phoneNumber: 
+                type: string
+                pattern: '^[6-9]{1}[0-9]{9}$'
+              password:
+                type: string
+                required: true
+                pattern: '^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$'
+              newPassword:
+                type: string
+                required: true
+                pattern: '^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$'
+              confirmPassword:
+                type: string
+                required: true
+                pattern: '^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$'
+
+      responses:
+        200:
+          description: ok
+        201:
+          description: created
+        400:
+          description: bad request
+        404:
+        description: not found
+        500:
+          description: internal server error
+              
+#-----------------forget Password--------------------
+
+  /forgetPassword:
+    post:
+      summary: When the user forget the password
+      description: Forget Password.
+      parameters:
+        - in: body
+          name: user
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                required: true
+      responses:
+        200:
+          description: ok
+        400:
+          description: bad request
+        404:
+          description: not found
+        500:
+          description: internal server error
+        
+
+#----------------------------OTP verification-----------------------
+  /verifyOtp:
+    delete:
+      summary: To verify the otp
+      description: Verify the otp which is sent to your registered email address.
+      parameters:
+        - in: body
+          name: user
+          schema:
+            type: object
+            properties:
+              otp:
+                type: integer
+                required: true
+      responses:
+        200:
+          description: ok
+        400:
+          description: bad request
+        404:
+          description: not found
+        500:
+          description: internal server error
+                 
+#---------------------new Password-----------------------
+  /newPassword:
+    put:
+      summary: To change the password
+      description: To change the password after verifing the otp.
+      parameters:
+        - in: body
+          name: user
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                required: true
+              newPassword:
+                type: string
+                required: true
+                pattern: '^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$'
+              confirmPassword:
+                type: string
+                required: true
+                pattern: '^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$'
+      responses:
+        200:
+          description: ok
+        201:
+          description: created
+        400:
+          description: bad request
+        404:
+        description: not found
+        500:
+          description: internal server error
+
+#------------------ delete the user---------------------
+  /deleteUser/{userId}:
+    delete:
+      summary: To delete the user
+      description: To Delete the account of the user.
+      parameters:
+        - in: body
+          name: user
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                required: true
+              password:
+                type: string
+                required: true
+      responses:
+        200:
+          description: ok
+        201:
+          description: created
+        400:
+          description: bad request
+        404:
+        description: not found
+        500:
+          description: internal server error
+
+#------------------------Add Addresses-------------------------
+  /addAddress/{userId}:
+    post:
+      summary: It creates the address.
+      description: It adds the address of the user.
+      produces: 
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+      - in: body  
+        name: user
+        schema: 
+          type: object
+          properties: 
+            city:
+              type: string
+              required: true
+            state:
+              type: string
+              required: true
+            pinCode:
+              type: string
+              required: true
+            addressName:
+              type: string
+              required: true
+            addressPhoneNumber:
+              type: string
+              required: true
+      responses:
+          201:
+            description: created
+          400:
+            description: bad request
+          404:
+            description: not found
+          500:
+            description: internal server error
+
+#----------------------get All the address of the user-------------
+  /getAllAddresses/{userId}:
+    get:
+      sumary: To get the addresses
+      description: To get the addresses of the user, pass the token.
+      security:
+      - Bearer: []
+      parameters:
+      - in: path
+        name: userId
+        required: true
+      responses:
+        200:
+          description: ok
+        400:
+          description: bad request
+        404:
+          description: not found
+        500:
+          description: internal server error
+
+#------------------------ getaddressbyb addressid----------------------
+  /getAddressByAddressId/{userId}/{addressId}:
+    get:
+      sumary: To get the addresses
+      description: To get the addresses of the user, pass the token.
+      security:
+      - Bearer: []
+      parameters:
+      - in: path
+        name: userId
+        required: true
+      - in: path
+        name: addressId
+        required: true
+      responses:
+        200:
+          description: ok
+        400:
+          description: bad request
+        404:
+          description: not found
+        500:
+          description: internal server error
+
+#-------------------Update Address----------------------
+  /updateAddress/{userId}/{addressId}:
+    put:
+      summary: To update address
+      description: To update the address of the user, pass the token.
+      security: 
+      - Bearer: []
+      parameters:
+      - in: path
+        name: userId
+        required: true
+      - in: path
+        name: addressId
+        required: true
+      requestBody:
+        content: 
+          application/json:
+            schema: 
+              type: object
+            properties:
+              city:
+              type: string
+              required: true
+            state:
+              type: string
+              required: true
+            pinCode:
+              type: string
+              required: true
+            addressName:
+              type: string
+              required: true
+            addressPhoneNumber:
+              type: string
+              required: true
+      responses:
+        200:
+          description: ok
+        201:
+          description: created
+        400:
+          description: bad request
+        404:
+        description: not found
+        500:
+          description: internal server error
+
+#---------------------------Delete address----------------------
+  /deleteAddress/{userId}/{addressId}:
+    delete:
+      summary: To delete the user
+      description: To Delete the account of the user.
+      security: 
+      - Bearer: []
+      responses:
+        200:
+          description: ok
+        201:
+          description: created
+        400:
+          description: bad request
+        404:
+        description: not found
+        500:
+          description: internal server error
+
+#-------------------------GetAllProdcuts----------------------
+  /getAllProducts:
+    get:
+      summary: To get the products
+      description: To get the products for the user.
+      responses:
+        200:
+          description: ok
+        400:
+          description: bad request
+        404:
+        description: not found
+        500:
+          description: internal server error
+
+#----------------------Get products by productsId------------------
+  /getProductById/{productId}:     
+    get:
+      summary: To get the products
+      description: To get the products for the user.
+      parameters:
+      - in: path
+        name: productId
+        required: true
+      responses:
+        200:
+          description: ok
+        400:
+          description: bad request
+        404:
+        description: not found
+        500:
+          description: internal server error     
+
+#--------------------change the wishlist for the user----------------
+  /changeProductStatusInWishlist/{userId}/{productId}:
+    put:
+      summary: To change the wishlist.
+      description: To change the wishlist of the user, single click in or out.
+      parameters:
+      - in: path
+        name: userId
+        required: true
+      - in: path
+        name: productId
+        required: true
+      responses:
+        200:
+          description: ok
+        201:
+          description: created
+        400:
+          description: bad request
+        404:
+        description: not found
+        500:
+          description: internal server error
+
+#------------------get the list of wishlist-------------------
+  /getAllProductsOfuserFromWishList/{userId}:
+    get:
+      summary: To get the wishlist.
+      description: To get the wihslist of the user.
+      security: 
+      - Bearer: []
+      parameters:
+      - in: path
+        name: userId
+        required: true
+      responses:
+        200:
+          description: ok
+        201:
+          description: created
+        400:
+          description: bad request
+        404:
+        description: not found
+        500:
+          description: internal server error
+
+#------------------add to cart-------------
+  ("/addToCart/{userId}/{productId}:
+    post:
+      summary: To add the products to the cart
+      description: It takes 2 parameters userId and productId to add the products to the cart
+      parameters:
+      - in: path  
+        name: userId
+        required: true
+      - in: path  
+        name: productId
+        required: true
+      responses:
+          201:
+            description: created
+          400:
+            description: bad request
+          404:
+            description: not found
+          500:
+            description: internal server error   
+
+#------------------get all products from the cart---------------------
+  /getAllProductsFromCart/{userId}:
+    get:
+      summary: Get all products from cart
+      description: Get all the products from cart.
+      security:
+      - bearer: []
+      parameters:
+      - in: path
+        name: userId
+        required: true
+      responses:
+        200:
+          description: ok
+        400:
+          description: bad request
+        404:
+          description: not found
+        500:
+          description: internal server error
+
+#---------------getSingleProductUsingProductId-----------------
+  /getSingleProductById/{userId}/{productId}:          
+    get:
+      summary: Get single product from cart
+      description: Get single product from cart.
+      parameters:
+      - in: path
+        name: userId
+        required: true
+      - in: path
+        name: productId
+        required: true
+      responses:
+        200:
+          description: ok
+        400:
+          description: bad request
+        404:
+          description: not found
+        500:
+          description: internal server error
+
+#--------------------------Increase the product Quantity by 1----------------
+  /increaseProductQuantityBy1/{userId}/{productId}:
+    put:  
+      summary: Increase the product Quantity by 1
+      description: Increase the product Quantity by 1
+      parameters:
+      - in: path
+        name: userId
+        required: true
+      - in: path
+        name: productId
+        required: true
+      responses:
+        200:
+          description: ok
+        400:
+          description: bad request
+        404:
+          description: not found
+        500:
+          description: internal server error
+
+#--------------------------Decrease the product Quantity by 1----------------
+  /decreaseProductQuantityBy1/{userId}/{productId}:
+    put:  
+      summary: Decrease the product Quantity by 1
+      description: Decrease the product Quantity by 1
+      parameters:
+      - in: path
+        name: userId
+        required: true
+      - in: path
+        name: productId
+        required: true
+      responses:
+        200:
+          description: ok
+        400:
+          description: bad request
+        404:
+          description: not found
+        500:
+          description: internal server error    
+
+#-------------------Delete products from the cart-----------------
+  /deleteProductfromCart/{userId}/{productId}:
+    delete:
+      summary: Decrease the product Quantity by 1
+      description: Decrease the product Quantity by 1
+      security:
+      - bearer: []
+      parameters:
+      - in: path
+        name: userId
+        required: true
+      - in: path
+        name: productId
+        required: true
+      responses:
+        200:
+          description: ok
+        400:
+          description: bad request
+        404:
+          description: not found
+        500:
+          description: internal server error   
+
+#-----------------------Generate Order------------------
+  /orderProduct/{userId}/{productId}:
+    post:
+      summary: Generate the order 
+      description: Generate the order for the user
+      security:
+      - bearer: []
+      parameters:
+      - in: path
+        name: userId
+        required: true
+      - in: path
+        name: productId
+        required: true
+      responses:
+        200:
+          description: ok
+        400:
+          description: bad request
+        404:
+          description: not found
+        500:
+          description: internal server error  
+
+#--------------------get all the products from the cart-----------------
+  /getOrderStatus/{userId}/{orderId}:
+    get:
+      summary: get the products from the cart 
+      description: Get all the products from the cart 
+      security:
+      - bearer: []
+      parameters:
+      - in: path
+        name: userId
+        required: true
+      - in: path
+        name: productId
+        required: true
+      responses:
+        200:
+          description: ok
+        400:
+          description: bad request
+        404:
+          description: not found
+        500:
+          description: internal server error   
+
+#-----------------update the order----------------
+  /updateOrder/{userId}/{orderId}:                      
+    put:
+      summary: Update the order
+      description: Updateing the order of the user
+      security: 
+      - Bearer: []
+      parameters:
+      - in: path
+        name: userId
+        required: true
+      - in: path
+        name: orderId
+        required: true
+      requestBody:
+        content: 
+          application/json:
+            schema: 
+              type: object
+            properties:
+              productQuantity:
+                type: integer
+              orderCiy: 
+                type: string
+                required: true
+              orderState:
+                type: string
+                required: true
+              orderPinCode:
+                type: string
+                required: true
+              orderAddressPhoneNumber:
+                type: string
+                required: true
+              orderAddressName:
+                type: string
+      responses:
+        200:
+          description: ok
+        400:
+          description: bad request
+        404:
+        description: not found
+        500:
+          description: internal server error
+
+#-------------------Cancel order-------------------
+  /cancelOrder/{userId}/{orderId}:
+    put:
+      summary: Cancel the order
+      description: Cancelling the order of the user
+      parameters:
+      - in: path
+        name: userId
+        required: true
+      - in: path
+        name: orderId
+        required: true  
+      responses:
+        200:
+          description: ok
+        400:
+          description: bad request
+        404:
+        description: not found
+        500:
+          description: internal server error
+
+#-----------------Order History--------------------
+  /getAllOrders/{userId}:
+    get:
+      summary: Get all the orders
+      description: Getting all the orders of the user.
+      security: 
+      - Bearer: []
+      parameters:
+      - in: path
+        name: userId
+        required: true      
+      responses:
+        200:
+          description: ok
+        400:
+          description: bad request
+        404:
+        description: not found
+        500:
+          description: internal server error
